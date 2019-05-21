@@ -1,0 +1,48 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot?useSSL=false&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 941021
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    hibernate:
+     ddl-auto:  update
+    show-sql: true
+mybatis:
+  typeAliasesPackage: com.crk.kafka.domain
+  mapperLocations: classpath:mapper/*.xml
+server:
+  port: 8888
+
+#kafka
+
+kafka:
+  consumer:
+   zookeeper:
+    connect: localhost:2181
+   servers: localhost:9092
+   enable:
+    auto:
+     commit: true
+   auto:
+    commit:
+      interval: 100
+    offset:
+     reset: latest
+   session:
+    timeout: 6000
+   topic: test0811
+   group:
+    id: test0811
+   concurrency: 10
+
+  producer:
+   servers: localhost:9092
+   retries: 0
+   batch:
+    size: 4096
+   linger: 1
+   buffer:
+    memory: 40960
+
